@@ -1,8 +1,9 @@
-const {serviceResponse} = require("../../core/ServiceResponse");
-const IPersonalAccessTokenService = require("../../interfaces/IPersonalAccessTokenService");
-const PersonalAccessTokenModel = require("../../models/mongodb/PersonalAccessToken");
+const {serviceResponse} = require('../../core/ServiceResponse');
+const IPersonalAccessTokenService = require('../../interfaces/IPersonalAccessTokenService');
+const PersonalAccessTokenModel = require('../../models/mongodb/PersonalAccessToken');
 const jwt = require('jsonwebtoken');
 const environments = require('dotenv').config().parsed;
+const helpers = require('../../utils/helpers');
 
 class PersonalAccessTokenService extends IPersonalAccessTokenService {
     constructor() {
@@ -11,7 +12,7 @@ class PersonalAccessTokenService extends IPersonalAccessTokenService {
 
     async generateToken(
         user,
-        userAgent
+        userAgent,
     ) {
         let token = jwt.sign({
             id: user.id,
@@ -19,13 +20,13 @@ class PersonalAccessTokenService extends IPersonalAccessTokenService {
             name: user.name,
         }, environments.JWT_SECRET_KEY);
 
-        PersonalAccessTokenModel.create({
+        await PersonalAccessTokenModel.create({
             tokenableType: 'User',
             tokenableId: user.id,
             token: token,
             userAgent: userAgent,
             lastUsedAt: null,
-            createdAt: Date.now(),
+            createdAt: helpers.reformatDatetimeTo_YYYY_MM_DD_HH_MM_SS(Date.now()),
             deletedAt: null,
         });
 
@@ -33,7 +34,7 @@ class PersonalAccessTokenService extends IPersonalAccessTokenService {
             true,
             'Token is generated',
             token,
-            200
+            200,
         );
     }
 
@@ -46,33 +47,27 @@ class PersonalAccessTokenService extends IPersonalAccessTokenService {
                 false,
                 'Token is not valid',
                 null,
-                401
+                401,
             );
         } else {
-            return await jwt.verify(personalAccessToken.token, environments.JWT_SECRET_KEY, (err, decoded) => {
+            return jwt.verify(personalAccessToken.token, environments.JWT_SECRET_KEY, (err, decoded) => {
                 if (err) {
                     return serviceResponse(
                         false,
                         'Token is not valid',
                         null,
-                        401
+                        401,
                     );
                 }
 
-                PersonalAccessTokenModel.updateOne(
-                    {
-                        token: token,
-                    },
-                    {
-                        lastUsedAt: Date.now(),
-                    }
-                );
+                personalAccessToken.lastUsedAt = helpers.reformatDatetimeTo_YYYY_MM_DD_HH_MM_SS(Date.now());
+                personalAccessToken.save();
 
                 return serviceResponse(
                     true,
                     'Token is valid',
                     decoded,
-                    200
+                    200,
                 );
             });
         }
