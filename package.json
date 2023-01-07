@@ -1,7 +1,7 @@
 {
-  "name": "@talhacan/node-core",
+  "name": "ihotyas",
   "version": "1.0.0",
-  "description": "NodeCore is core system for developing NodeJs applications.",
+  "description": "ihotyas is an open source chat application developed with @Rampesna/node-core",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -28,17 +28,5 @@
     "tedious": "^11.0.8",
     "ws": "^8.11.0",
     "yargs": "^17.6.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Rampesna/node-core.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Rampesna/node-core/issues"
-  },
-  "homepage": "https://github.com/Rampesna/node-core#readme",
-  "devDependencies": {
-    "eslint": "^8.30.0",
-    "eslint-config-google": "^0.14.0"
   }
 }

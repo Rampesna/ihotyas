@@ -7,11 +7,11 @@ const AuthenticationMiddleware = require('../app/http/middlewares/Authentication
 const UserController = require('../app/http/controllers/UserController');
 
 // Requests
-const LoginRequest = require("../app/http/requests/UserController/LoginRequest");
-const GetProfileRequest = require("../app/http/requests/UserController/GetProfileRequest");
-const GetAllRequest = require("../app/http/requests/UserController/GetAllRequest");
-const GetByIdRequest = require("../app/http/requests/UserController/GetByIdRequest");
-const DeleteRequest = require("../app/http/requests/UserController/DeleteRequest");
+const LoginRequest = require('../app/http/requests/UserController/LoginRequest');
+const GetProfileRequest = require('../app/http/requests/UserController/GetProfileRequest');
+const GetAllRequest = require('../app/http/requests/UserController/GetAllRequest');
+const GetByIdRequest = require('../app/http/requests/UserController/GetByIdRequest');
+const DeleteRequest = require('../app/http/requests/UserController/DeleteRequest');
 
 router.post('/auth/login', LoginRequest, UserController.login);
 

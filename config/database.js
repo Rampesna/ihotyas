@@ -19,6 +19,7 @@ const sequelizeConnection = new Sequelize(
 );
 
 function mongoDbConnection() {
+    mongoose.set("strictQuery", false);
     mongoose.connect(`mongodb://${environments.MONGO_DB_HOST}:${environments.MONGO_DB_PORT}/${environments.MONGO_DB_NAME}`);
 }
 

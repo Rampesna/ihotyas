@@ -8,7 +8,7 @@ mongoDbConnection();
 
 let PersonalAccessTokenSchema = new Schema({
     tokenableType: String,
-    tokenableId: Number,
+    tokenableId: String,
     token: String,
     userAgent: String,
     lastUsedAt: String,
