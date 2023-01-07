@@ -1,6 +1,6 @@
 const {serviceResponse} = require('../../core/ServiceResponse');
 const IUserService = require('../../interfaces/IUserService');
-const UserModel = require('../../models/sequelize/user')();
+const UserModel = require('../../models/mongodb/user');
 const bcrypt = require('bcrypt');
 const PersonalAccessTokenService = require('./PersonalAccessTokenService');
 
@@ -70,7 +70,7 @@ class UserService extends IUserService {
     async getById(
         id
     ) {
-        let user = await UserModel.findByPk(id);
+        let user = await UserModel.findById(id);
         if (user != null) {
             return serviceResponse(
                 true,
@@ -91,7 +91,7 @@ class UserService extends IUserService {
     async delete(
         id
     ) {
-        let user = await UserModel.findByPk(id);
+        let user = await UserModel.findById(id);
         if (user != null) {
             await user.destroy();
             return serviceResponse(
