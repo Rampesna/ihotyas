@@ -10,6 +10,11 @@ exports.getProfile = async (request, response) => {
     response.send(serviceResponse, serviceResponse.statusCode);
 }
 
+exports.getContacts = async (request, response) => {
+    serviceResponse = await UserService.getContacts(request.user.id);
+    response.send(serviceResponse, serviceResponse.statusCode);
+}
+
 exports.getAll = async (request, response) => {
     serviceResponse = await UserService.getAll();
     response.send(serviceResponse, serviceResponse.statusCode);
