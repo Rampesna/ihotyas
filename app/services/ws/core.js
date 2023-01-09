@@ -20,7 +20,7 @@ exports.startWsServer = () => {
                 user,
                 receiverId,
                 message
-            })
+            });
         });
     });
 }
