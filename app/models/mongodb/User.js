@@ -9,19 +9,23 @@ mongoDbConnection();
 
 let UserSchema = new Schema({
     name: {
-        type: String, required: [
+        type: String,
+        required: [
             true, 'Name is required'
         ]
     },
     email: {
-        type: String, unique: true, required: [
+        type: String,
+        unique: true,
+        required: [
             true, 'Email is required'
         ]
     },
     password: String,
     created_at: Date,
     updated_at: Date,
-    group_ids: [Number]
+    group_ids: [],
+    contacts: []
 });
 
 UserSchema.methods.comparePassword = function (password) {

@@ -88,6 +88,31 @@ class UserService extends IUserService {
         }
     }
 
+    async getContacts(
+        userId
+    ) {
+        let user = await UserModel.findById(userId);
+        if (user != null) {
+            return serviceResponse(
+                true,
+                'User',
+                await UserModel.find({
+                    _id: {
+                        $in: user.contacts
+                    }
+                }),
+                200
+            );
+        } else {
+            return serviceResponse(
+                false,
+                'User not found',
+                null,
+                404
+            );
+        }
+    }
+
     async delete(
         id
     ) {
