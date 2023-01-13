@@ -25,6 +25,7 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.25.8",
     "sequelize-cli": "^6.5.2",
+    "socket.io": "^4.5.4",
     "sqlite3": "^5.1.2",
     "tedious": "^11.0.8",
     "ws": "^8.11.0",
