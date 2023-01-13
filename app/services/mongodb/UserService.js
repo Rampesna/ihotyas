@@ -43,9 +43,7 @@ class UserService extends IUserService {
         return serviceResponse(
             true,
             'User logged in successfully',
-            {
-                token: tokenResponse.data
-            },
+            tokenResponse.data,
             200
         );
     }

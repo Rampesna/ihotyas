@@ -7,8 +7,14 @@ const expressServer = express();
 /*
 * WS Implementation
 * */
-const wsServer = require('./app/services/ws/core');
-wsServer.startWsServer();
+// const wsServer = require('./app/services/ws/core');
+// wsServer.startWsServer();
+
+/*
+* SocketIo Implementation
+* */
+const socketIdServer = require('./app/services/socketio/core');
+socketIdServer.startSocketIoServer();
 
 /**
  * Environment Variables

@@ -10,19 +10,10 @@ const PersonalAccessTokenService = require('../../services/mongodb/PersonalAcces
 
 exports.startWsServer = () => {
     wsServer.on('connection', (ws) => {
-        ws.on('sendMessage', async (
-            token,
-            receiverId,
-            message
-        ) => {
-            let user = await PersonalAccessTokenService.validateToken(token);
-            console.log({
-                user,
-                receiverId,
-                message
-            });
-
-
+        ws.on('message', async (message) => {
+            console.log(JSON.parse(message));
         });
-    });
+
+        ws.send('somethings getted');
+    })
 }

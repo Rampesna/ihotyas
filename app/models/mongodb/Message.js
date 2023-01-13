@@ -8,7 +8,7 @@ mongoDbConnection();
 
 let MessageSchema = new Schema({
     senderId: {
-        type: Number,
+        type: String,
         required: [
             true, 'senderId is required'
         ]
@@ -20,7 +20,7 @@ let MessageSchema = new Schema({
         ]
     },
     receiverId: {
-        type: Number,
+        type: String,
         required: [
             true, 'receiverId is required'
         ]
